@@ -1,7 +1,8 @@
 // Dieser Code benötigt zwingend die folgenden Libraries:
 #include "DHT.h"
-#include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
+#include <hd44780.h>                       // main hd44780 header
+#include <hd44780ioClass/hd44780_I2Cexp.h> // i2c expander i/o class header
 #include <avr/wdt.h>
 
 #define RELAIPIN 6 // Anschluss des Lüfter-Relais
@@ -30,7 +31,7 @@ bool rel;
 DHT dht1(DHTPIN_1, DHTTYPE_1); //Der Innensensor wird ab jetzt mit dht1 angesprochen
 DHT dht2(DHTPIN_2, DHTTYPE_2); //Der Außensensor wird ab jetzt mit dht2 angesprochen
 
-LiquidCrystal_I2C lcd(0x27,20,4); // LCD: I2C-Addresse und Displaygröße setzen
+hd44780_I2Cexp lcd; // LCD Adresse automatisch erkennen lassen
 
 bool fehler = true;
 
@@ -43,7 +44,12 @@ void setup() {
   Serial.begin(9600);  // Serielle Ausgabe, falls noch kein LCD angeschlossen ist
   Serial.println(F("Teste Sensoren.."));
 
-  lcd.init();
+  int status = lcd.begin(20,4); // Inititalisiere LCD mit Anzahl Reihen und Spalten
+  	if(status) // non zero status means it was unsuccesful
+	{
+    Serial.println(F("Fehler: Konnte Display nicht initialisieren!"));
+		hd44780::fatalError(status); // does not return
+	}
   lcd.backlight();                      
   lcd.setCursor(2,0);
   lcd.print(F("Teste Sensoren.."));
