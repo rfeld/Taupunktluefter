@@ -9,18 +9,18 @@
 #define DHTPIN_1 5 // Datenleitung für den DHT-Sensor 1 (innen)
 #define DHTPIN_2 4 // Datenleitung für den DHT-Sensor 2 (außen)
 
-#define RELAIS_EIN LOW
-#define RELAIS_AUS HIGH
+#define RELAIS_EIN HIGH
+#define RELAIS_AUS LOW
 bool rel;
 
 #define DHTTYPE_1 DHT22 // DHT 22 
 #define DHTTYPE_2 DHT22 // DHT 22  
 
 // *******  Korrekturwerte der einzelnen Sensorwerte  *******
-#define Korrektur_t_1  -3 // Korrekturwert Innensensor Temperatur
-#define Korrektur_t_2  -4 // Korrekturwert Außensensor Temperatur
-#define Korrektur_h_1  0  // Korrekturwert Innensensor Luftfeuchtigkeit
-#define Korrektur_h_2  0  // Korrekturwert Außensensor Luftfeuchtigkeit
+#define Korrektur_t_1  0.2 // Korrekturwert Innensensor Temperatur
+#define Korrektur_t_2  0.8 // Korrekturwert Außensensor Temperatur
+#define Korrektur_h_1  -1.8  // Korrekturwert Innensensor Luftfeuchtigkeit
+#define Korrektur_h_2  1.4  // Korrekturwert Außensensor Luftfeuchtigkeit
 //***********************************************************
 
 #define SCHALTmin   5.0 // minimaler Taupunktunterschied, bei dem das Relais schaltet
