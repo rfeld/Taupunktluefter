@@ -25,7 +25,7 @@ bool rel;
 
 #define SCHALTmin   5.0 // minimaler Taupunktunterschied, bei dem das Relais schaltet
 #define HYSTERESE   1.0 // Abstand von Ein- und Ausschaltpunkt
-#define TEMP1_min  10.0 // Minimale Innentemperatur, bei der die Lüftung aktiviert wird
+#define TEMP1_min  18.5 // Minimale Innentemperatur, bei der die Lüftung aktiviert wird
 #define TEMP2_min -10.0 // Minimale Außentemperatur, bei der die Lüftung aktiviert wird
 
 DHT dht1(DHTPIN_1, DHTTYPE_1); //Der Innensensor wird ab jetzt mit dht1 angesprochen
